@@ -1,0 +1,89 @@
+type User {
+  id: ID!
+  firstname: String!
+  lastname: String!
+  handle: String!
+  email: String!
+  coverPhoto: String
+  avatar: String
+  bio: String
+  location: String
+  website: String
+  dob: String
+  tweets: [Tweet!]!
+  retweets: [Retweet!]!
+  following: [User!]!
+  followers: [User!]!
+  comments: [Comment!]!
+  likes: [Like!]!
+  files: [File!]!
+  # computed fields
+  fullname: String!
+  isSelf: Boolean!
+  isFollowing: Boolean!
+  followingCount: Int!
+  followersCount: Int!
+  tweetsCount: Int!
+  # prisma does this
+  createdAt: String
+  updatedAt: String
+}
+
+type Tweet {
+  id: ID!
+  user: User
+  text: String!
+  tags: [String!]! 
+  files: [File!]!
+  comments: [Comment!]!
+  likes: [Like!]!
+  retweets: [Retweet!]!
+  # computer fields
+  likesCount: Int!
+  commentsCount: Int!
+  retweetsCount: Int!
+  isLiked: Boolean!
+  isTweetMine: Boolean!
+  isRetweet: Boolean!
+  # prisma does this
+  createdAt: String
+  updatedAt: String
+}
+
+type Comment {
+  id: ID!
+  text: String!
+  tweet: Tweet
+  user: User
+  # computed fields
+  isCommentMine: Boolean!
+  # prisma does this
+  createdAt: String
+  updatedAt: String
+}
+
+type Like {
+  id: ID!
+  tweet: Tweet
+  user: User
+}
+
+type File {
+  id: ID!
+  url: String!
+  tweet: Tweet
+  user: User
+}
+
+type Retweet {
+  id: ID!
+  tweet: Tweet 
+  user: User 
+  createdAt: String!
+  updatedAt: String!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}

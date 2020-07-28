@@ -1,0 +1,11 @@
+projects:
+  app:
+    schemaPath: src/schema.graphql
+    extensions:
+
+  prisma:
+    schemaPath: "src/generated/prisma.graphql"
+    extensions:
+    endpoints:
+        default: https://weby-ee924decca.herokuapp.com/web/dev
+      prisma: prisma.yml
